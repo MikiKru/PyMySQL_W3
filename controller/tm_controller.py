@@ -41,10 +41,21 @@ class TaskManagerController:
         self.c.execute("SELECT * FROM task")
         tasks = self.c.fetchall()
         for task in tasks:    # iteruje po rekordach
-            print("| %15s | %30s | %15s | %15s |" % (task[1], task[2], task[3], str(task[4])))
+            # %s -> w to miejsce wprowadzam string
+            # %15s -> w to miejsce wprowadzam string ale rezerwuje 15 znaków na jego reprezentacje
+            task_name = task[1]
+            task_description = task[2]
+            task_category = task[3]
+            user_id = task[4]
+            print("| %15s | %30s | %15s | %15s |" %
+                  (task_name, task_description, task_category, self.selectUserById(user_id)))
+    def selectUserById(self, user_id):
+        self.c.execute("SELECT name, lastname FROM user WHERE user_id = %s", str(user_id))
+        selectedUser = self.c.fetchone()
+        return selectedUser[0] + " " + selectedUser[1]
 
 tmc = TaskManagerController()
 tmc.login('mk@mk.pl', 'mk')         # ok
-tmc.insertTaskByUser("test","test","SQL",1)
+tmc.insertTaskByUser("test111","test111","Python",1)
 
 
