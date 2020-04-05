@@ -12,9 +12,9 @@ class ConnectionConfig:
         self.conn.close()
         print("...połączenie zakmniete...")
 
-cc = ConnectionConfig()     # wywolanie kontruktora klasy
-cc.connection()
-cc.closeConnection()
+# cc = ConnectionConfig()     # wywolanie kontruktora klasy
+# cc.connection()
+# cc.closeConnection()
 
 # def connection(user = "tm_user", passwd= "qwe123"):
 #     global conn     # zakres widoczności obiektu conn dotyczy całego skryptu
