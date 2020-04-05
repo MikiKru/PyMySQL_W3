@@ -31,7 +31,7 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a6a73012-8f98-4472-994b-749e21f84730">
-      <console name="tm_db conn" type="STANDARD" schema="tm_db" session="Main"><![CDATA[select * from user where user_id = 2;]]></console>
+      <console name="tm_db conn" type="STANDARD" schema="tm_db" session="Main"><![CDATA[select * from task;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -85,7 +85,7 @@
           <deprecated-pwd value="cXdlMTIz" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />

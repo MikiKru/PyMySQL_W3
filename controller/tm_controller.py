@@ -53,9 +53,13 @@ class TaskManagerController:
         self.c.execute("SELECT name, lastname FROM user WHERE user_id = %s", str(user_id))
         selectedUser = self.c.fetchone()
         return selectedUser[0] + " " + selectedUser[1]
+    def deleteTaskById(self, task_id):
+        self.c.execute("DELETE FROM task WHERE task_id = %s", str(task_id))
+        self.conn.commit()
+        self.selectTasks()
 
 tmc = TaskManagerController()
-tmc.login('mk@mk.pl', 'mk')         # ok
-tmc.insertTaskByUser("test111","test111","Python",1)
-
+# tmc.login('mk@mk.pl', 'mk')         # ok
+# tmc.insertTaskByUser("test111","test111","Python",1)
+tmc.deleteTaskById(16)
 
