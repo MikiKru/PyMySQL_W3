@@ -24,6 +24,8 @@ class TaskManagerController:
             print("zalogowano: " + result[3])
         else:
             print("niezalogowano")
+    
+
 tmc = TaskManagerController()
 tmc.login('mk@mk.pl', 'mk')         # ok
 tmc.login('mk@mk.pl', 'mk111')      # błąd logowania
