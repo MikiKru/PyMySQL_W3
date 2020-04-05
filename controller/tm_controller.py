@@ -24,9 +24,20 @@ class TaskManagerController:
             print("zalogowano: " + result[3])
         else:
             print("niezalogowano")
-    
+    def insertTaskByUser(self, task_name, task_description, task_category, user_id):
+        self.c.execute("insert into task values(default, %s, %s, %s, %s)",
+                       (task_name, task_description, task_category, user_id))
+        # ?
+        print("dodano nowego taska: " + task_name)
+    def selectTasks(self):
+        self.c.execute("SELECT * FROM task")
+        tasks = self.c.fetchall()
+        for task in tasks:    # iteruje po rekordach
+            print("| %15s | %30s | %15s | %15s |" % (task[1], task[2], task[3], str(task[4])))
 
 tmc = TaskManagerController()
 tmc.login('mk@mk.pl', 'mk')         # ok
-tmc.login('mk@mk.pl', 'mk111')      # błąd logowania
-tmc.login('mk@mk.pll', 'mk111')     # błąd logowania
+
+tmc.insertTaskByUser("test","test","SQL",1)
+tmc.selectTasks()
+

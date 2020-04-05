@@ -25,13 +25,13 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="a6a73012-8f98-4472-994b-749e21f84730">
-        <schema name="tm_db" object-types="procedure, function, view, table" />
+        <schema name="tm_db" object-types="procedure, constraint, column, index, dataset trigger, function, view, table" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="a6a73012-8f98-4472-994b-749e21f84730">
-      <console name="tm_db conn" type="STANDARD" schema="tm_db" session="Main" />
+      <console name="tm_db conn" type="STANDARD" schema="tm_db" session="Main"><![CDATA[select * from user where user_id = 2;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -39,6 +39,9 @@
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="a6a73012-8f98-4472-994b-749e21f84730" />
+  </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="a6a73012-8f98-4472-994b-749e21f84730" dataset="tm_db.user" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
