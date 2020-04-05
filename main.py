@@ -9,7 +9,8 @@ class CLI:
             print("Witaj w aplikacji TASK MANAGER")
             decision = input("(L) - logowanie \n(R) - rejestracja \n(Q) - wyjście").upper()
             if(decision == "L"):
-                pass
+                if(tmc.login(input("podaj email:"), input("podaj password"))):
+                    print("CLI CD...")
             elif(decision == "R"):
                 print("Jeszcze nie jest aktywna rejestrcja")
             else:
