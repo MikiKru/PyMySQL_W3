@@ -32,6 +32,7 @@ class TaskManagerController:
         if(decision == 'T'):
             self.conn.commit()      # zatwierdź i wprowadź do bazy danych
             print("dodano nowego taska: " + task_name)
+            self.selectTasks()      # wywołanie metody selectTasks() w metodzie insertTaskByUser()
         else:
             self.conn.rollback()    # odrzuć dane i nie wprowadzaj do bazy danych
             print("nic nie dodano")
@@ -44,7 +45,6 @@ class TaskManagerController:
 
 tmc = TaskManagerController()
 tmc.login('mk@mk.pl', 'mk')         # ok
-
 tmc.insertTaskByUser("test","test","SQL",1)
-tmc.selectTasks()
+
 
