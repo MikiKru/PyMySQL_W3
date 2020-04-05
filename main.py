@@ -23,9 +23,10 @@ class CLI:
             if(decision == "1"):
                 pass
             elif(decision == "2"):
-                pass
+                self.tmc.selectTasks()
             elif (decision == "3"):
-                pass
+                self.tmc.selectTasks()
+                self.tmc.deleteTaskById(int(input("podaj id zadania")))
             elif (decision == "4"):
                 pass
             elif (decision == "Q"):

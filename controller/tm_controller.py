@@ -45,12 +45,13 @@ class TaskManagerController:
         for task in tasks:    # iteruje po rekordach
             # %s -> w to miejsce wprowadzam string
             # %15s -> w to miejsce wprowadzam string ale rezerwuje 15 znaków na jego reprezentacje
+            task_id = task[0]
             task_name = task[1]
             task_description = task[2]
             task_category = task[3]
             user_id = task[4]
-            print("| %15s | %30s | %15s | %15s |" %
-                  (task_name, task_description, task_category, self.selectUserById(user_id)))
+            print("| %3s | %15s | %30s | %15s | %15s |" %
+                  (task_id, task_name, task_description, task_category, self.selectUserById(user_id)))
     def selectUserById(self, user_id):
         self.c.execute("SELECT name, lastname FROM user WHERE user_id = %s", str(user_id))
         selectedUser = self.c.fetchone()
