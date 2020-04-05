@@ -28,7 +28,14 @@ class TaskManagerController:
         self.c.execute("insert into task values(default, %s, %s, %s, %s)",
                        (task_name, task_description, task_category, user_id))
         # ?
-        print("dodano nowego taska: " + task_name)
+        decision = input("potwierdź dodanie taska (T/N)").upper()
+        if(decision == 'T'):
+            self.conn.commit()      # zatwierdź i wprowadź do bazy danych
+            print("dodano nowego taska: " + task_name)
+        else:
+            self.conn.rollback()    # odrzuć dane i nie wprowadzaj do bazy danych
+            print("nic nie dodano")
+        # ?
     def selectTasks(self):
         self.c.execute("SELECT * FROM task")
         tasks = self.c.fetchall()
