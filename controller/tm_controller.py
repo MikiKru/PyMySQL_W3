@@ -57,9 +57,20 @@ class TaskManagerController:
         self.c.execute("DELETE FROM task WHERE task_id = %s", str(task_id))
         self.conn.commit()
         self.selectTasks()
+    def updateUserPassword(self, user_id, newPassword):
+        # update
+        self.c.execute("UPDATE user SET password = %s WHERE user_id = %s", (newPassword, user_id))
+        self.conn.commit()
+        # dane użytkownika z nowym haslem
+        print("hasło zostało zmienione")
+        print(self.getUserById(user_id))
+    def getUserById(self, user_id):
+        self.c.execute("SELECT * FROM user WHERE user_id = %s", str(user_id))
+        return self.c.fetchone()
 
 tmc = TaskManagerController()
 # tmc.login('mk@mk.pl', 'mk')         # ok
 # tmc.insertTaskByUser("test111","test111","Python",1)
-tmc.deleteTaskById(16)
+# tmc.deleteTaskById(16)
+tmc.updateUserPassword(1,"cba")
 
