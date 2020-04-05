@@ -70,6 +70,15 @@ class TaskManagerController:
     def getUserById(self, user_id):
         self.c.execute("SELECT * FROM user WHERE user_id = %s", str(user_id))
         return self.c.fetchone()
+    def insertSubtaskForTask(self):      # dodaj podzadanie
+        pass
+    def deleteSubtaskById(self):         # usuń podzadanie
+        pass
+    def deleteTaskWithAllSubtasks(self): # usuń zadanie z wszystkimi jego podzadaniami
+        pass
+    def updateSubtaskdatStop(self):      # zmień datę zakończenia podzadania
+        pass
+
 
 # tmc = TaskManagerController()
 # # tmc.login('mk@mk.pl', 'mk')         # ok
