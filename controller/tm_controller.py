@@ -19,10 +19,9 @@ class TaskManagerController:
         # wykonanie zapytania
         self.c.execute("SELECT * FROM user WHERE email = %s AND password = %s", (email, passwd))
         # pobranie wyniku zwracanego przez zapytanie (resultset)
-        result = self.c.fetchall()
-        print(result)
+        result = self.c.fetchone()
         if(result):
-            print("zalogowano")
+            print("zalogowano: " + result[3])
         else:
             print("niezalogowano")
 tmc = TaskManagerController()
