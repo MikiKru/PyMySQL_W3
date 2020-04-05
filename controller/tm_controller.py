@@ -22,8 +22,10 @@ class TaskManagerController:
         result = self.c.fetchone()
         if(result):
             print("zalogowano: " + result[3])
+            return True
         else:
             print("niezalogowano")
+            return False
     def insertTaskByUser(self, task_name, task_description, task_category, user_id):
         self.c.execute("insert into task values(default, %s, %s, %s, %s)",
                        (task_name, task_description, task_category, user_id))
