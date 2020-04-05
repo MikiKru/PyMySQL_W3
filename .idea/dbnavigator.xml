@@ -23,18 +23,22 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="a6a73012-8f98-4472-994b-749e21f84730">
+        <schema name="tm_db" object-types="procedure, function, view, table" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="cd2bf278-797e-44d0-8b96-8a029dd313db">
-      <console name="tm_db" type="STANDARD" schema="" session="Main"><![CDATA[show tables;]]></console>
+    <connection id="a6a73012-8f98-4472-994b-749e21f84730">
+      <console name="tm_db conn" type="STANDARD" schema="tm_db" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="cd2bf278-797e-44d0-8b96-8a029dd313db" />
+    <connection id="a6a73012-8f98-4472-994b-749e21f84730" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -59,20 +63,20 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="cd2bf278-797e-44d0-8b96-8a029dd313db" active="true">
+      <connection id="a6a73012-8f98-4472-994b-749e21f84730" active="true">
         <database>
-          <name value="tm_db" />
+          <name value="tm_db conn" />
           <description value="" />
           <database-type value="MYSQL" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
+          <database-version value="8.0" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />
-          <database value="mysql" />
+          <database value="tm_db" />
           <type value="USER_PASSWORD" />
           <user value="tm_user" />
           <deprecated-pwd value="cXdlMTIz" />

@@ -33,3 +33,16 @@ create table subtask(
     task_id int,
     foreign key (task_id) references task (task_id)
 );
+
+insert into user values(
+	default,
+    'Michał',
+    'Kruczkowski',
+    'mk@mk.pl',
+    'mk',
+    default,
+    default
+);
+
+-- wymuszenie przesunięcia czasowego
+SET GLOBAL time_zone = '+1:00';
