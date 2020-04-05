@@ -68,9 +68,9 @@ class TaskManagerController:
         self.c.execute("SELECT * FROM user WHERE user_id = %s", str(user_id))
         return self.c.fetchone()
 
-tmc = TaskManagerController()
-# tmc.login('mk@mk.pl', 'mk')         # ok
-# tmc.insertTaskByUser("test111","test111","Python",1)
-# tmc.deleteTaskById(16)
-tmc.updateUserPassword(1,"cba")
+# tmc = TaskManagerController()
+# # tmc.login('mk@mk.pl', 'mk')         # ok
+# # tmc.insertTaskByUser("test111","test111","Python",1)
+# # tmc.deleteTaskById(16)
+# tmc.updateUserPassword(1,"cba")
 
