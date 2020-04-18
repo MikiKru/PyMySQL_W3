@@ -77,18 +77,27 @@ class TaskManagerController:
         self.c.execute("INSERT INTO subtask VALUES(default, %s, %s, %s, %s)",
                        (subtask_name, subtask_date_start, subtask_date_stop, task_id))
         self.conn.commit()
-    def deleteSubtaskById(self, task_id, subtask_id):         # usuń podzadanie
+        self.selectTasksWithSubtasks()
+    def deleteSubtaskById(self, subtask_id, task_id):         # usuń podzadanie
         self.c.execute("DELETE FROM subtask WHERE task_id = %s AND subtask_id = %s", (str(task_id), str(subtask_id)))
         self.conn.commit()
+        self.selectTasksWithSubtasks()
+    def selectTasksWithSubtasks(self):
+        self.c.execute("SELECT t.*,s.* FROM task t left join subtask s ON (t.task_id = s.task_id) ORDER BY t.task_name;")
+        for row in self.c.fetchall():
+            print("| %2s | %10s | %10s | %10s | %2s | %10s | %10s | %10s | %10s |" %
+                  (row[0],row[1],row[2],row[3], row[4],row[5],row[6], row[7], row[8]))
     def deleteTaskWithAllSubtasks(self,task_id): # usuń zadanie z wszystkimi jego podzadaniami
         self.c.execute('DELETE subtask FROM subtask LEFT JOIN task ON subtask.task_id = task.task_id WHERE task.task_id = %s',
             str(task_id))
         self.c.execute("DELETE FROM task WHERE task_id = %s", str(task_id))
         self.conn.commit()
-    def updateSubtaskByDateStop(self, dateStop, task_id, subtask_id):      # zmień datę zakończenia podzadania
+        self.selectTasksWithSubtasks()
+    def updateSubtaskByDateStop(self, subtask_id, task_id, dateStop):      # zmień datę zakończenia podzadania
         self.c.execute("UPDATE subtask SET subtask_date_stop = %s WHERE task_id = %s AND subtask_id = %s",
                        (dateStop, str(task_id), str(subtask_id)))
         self.conn.commit()
+        self.selectTasksWithSubtasks()
 # tmc = TaskManagerController()
 # # tmc.login('mk@mk.pl', 'mk')         # ok
 # # tmc.insertTaskByUser("test111","test111","Python",1)
