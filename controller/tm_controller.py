@@ -1,5 +1,7 @@
 # klasa obsługująca żądania użytkownika aplikacji
 # ALT + Enter -> auto-podpowiedź
+from datetime import datetime, time
+
 from config.tm_connect import ConnectionConfig
 
 '''
@@ -70,16 +72,23 @@ class TaskManagerController:
     def getUserById(self, user_id):
         self.c.execute("SELECT * FROM user WHERE user_id = %s", str(user_id))
         return self.c.fetchone()
-    def insertSubtaskForTask(self):      # dodaj podzadanie
-        pass
-    def deleteSubtaskById(self):         # usuń podzadanie
-        pass
-    def deleteTaskWithAllSubtasks(self): # usuń zadanie z wszystkimi jego podzadaniami
-        pass
-    def updateSubtaskdatStop(self):      # zmień datę zakończenia podzadania
-        pass
-
-
+    def insertSubtaskForTask(self, subtask_name, subtask_date_start, subtask_date_stop, task_id):      # dodaj podzadanie
+        # YYYY-MM-dd
+        self.c.execute("INSERT INTO subtask VALUES(default, %s, %s, %s, %s)",
+                       (subtask_name, subtask_date_start, subtask_date_stop, task_id))
+        self.conn.commit()
+    def deleteSubtaskById(self, task_id, subtask_id):         # usuń podzadanie
+        self.c.execute("DELETE FROM subtask WHERE task_id = %s AND subtask_id = %s", (str(task_id), str(subtask_id)))
+        self.conn.commit()
+    def deleteTaskWithAllSubtasks(self,task_id): # usuń zadanie z wszystkimi jego podzadaniami
+        self.c.execute('DELETE subtask FROM subtask LEFT JOIN task ON subtask.task_id = task.task_id WHERE task.task_id = %s',
+            str(task_id))
+        self.c.execute("DELETE FROM task WHERE task_id = %s", str(task_id))
+        self.conn.commit()
+    def updateSubtaskByDateStop(self, dateStop, task_id, subtask_id):      # zmień datę zakończenia podzadania
+        self.c.execute("UPDATE subtask SET subtask_date_stop = %s WHERE task_id = %s AND subtask_id = %s",
+                       (dateStop, str(task_id), str(subtask_id)))
+        self.conn.commit()
 # tmc = TaskManagerController()
 # # tmc.login('mk@mk.pl', 'mk')         # ok
 # # tmc.insertTaskByUser("test111","test111","Python",1)

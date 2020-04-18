@@ -20,7 +20,9 @@ class CLI:
     def menu(self, user_id):
         while(True):
             decision = input("(1) - dodaj zadanie \n(2) - wypisz zadania "
-                             "\n(3) - usuń zadanie \n(4) - zmień hasło \n(Q) - cofnij").upper()
+                             "\n(3) - usuń zadanie \n(4) - zmień hasło \n(5) - dodaj podzadanie "
+                        "\n(6) - zmodyfikuj podzadanie \n(7) - usuń podzadanie \n(8) - usuń zadanie "
+                             "\n(Q) - cofnij").upper()
             if(decision == "1"):
                 self.tmc.insertTaskByUser(
                     input("podaj nazwę "),
@@ -34,6 +36,28 @@ class CLI:
                 self.tmc.deleteTaskById(int(input("podaj id zadania")))
             elif (decision == "4"):
                 self.tmc.updateUserPassword(user_id, input("podaj nowe hasło"))
+            elif (decision == "5"):
+                self.tmc.insertSubtaskForTask(
+                    input("podaj nazwę: "),
+                    input("podaj date rozpoczęcia: "),
+                    input("podaj datę zakończenia: "),
+                    input("podaj id głownego zadania: ")
+                )
+            elif (decision == "6"):
+                self.tmc.updateSubtaskByDateStop(
+                    input("podaj id podzadania, które chcesz zmodyfikować: "),
+                    input('podaj id zadania głownego: '),
+                    input('podaj nowa date zakończenia podzadania: ')
+                )
+            elif (decision == "7"):
+                self.tmc.deleteSubtaskById(
+                    input("podaj id podzadania, które chcesz usunąć: "),
+                    input("podaj id zadania głównego do którego nalezy to podzadanie: ")
+                )
+            elif (decision == "8"):
+                self.tmc.deleteTaskWithAllSubtasks(
+                    input("Podaj id zadania głownego które chcesz usunąć")
+                )
             elif (decision == "Q"):
                 break
             else:
